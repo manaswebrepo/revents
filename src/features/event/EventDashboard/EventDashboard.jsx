@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Button } from 'semantic-ui-react';
 import EventLIst from '../EventList/EventLIst';
 import EventForm from '../EventForm/EventForm';
+import cuid from 'cuid';
 
 const eventsFromDashboard = [
     {
@@ -55,29 +56,44 @@ const eventsFromDashboard = [
 ]
 
 class EventDashboard extends Component {
-    state = {
-        events: eventsFromDashboard,
-        isOpen: false
-    }
-    handleIsOpentoggle = () => {
-        this.setState(({ isOpen }) => ({
-            isOpen: !isOpen
-        }))
-    }
-    render() {
-        const { events, isOpen } = this.state;
-        return (
-            <Grid>
-                <Grid.Column width={10}>
-                    <EventLIst events={events}></EventLIst>
-                </Grid.Column>
-                <Grid.Column width={6}>
-                    <Button positive content='Create Event' onClick={this.handleIsOpentoggle}></Button>
-                    {isOpen && <EventForm cancelFormOpen={this.handleIsOpentoggle}></EventForm>}
+  state = {
+    events: eventsFromDashboard,
+    isOpen: false
+  };
+  handleIsOpentoggle = () => {
+    this.setState(({ isOpen }) => ({
+      isOpen: !isOpen
+    }));
+  };
 
-                </Grid.Column></Grid>
-        )
-    }
+  handleCreateEvent = newEvent => {
+    newEvent.id = cuid();
+    newEvent.hostPhotoURL = '/assets/user.png';
+    this.setState(({ events }) => ({
+      events: [...events, newEvent],
+      isOpen: false
+    }));
+  };
+
+  render() {
+    const { events, isOpen } = this.state;
+    return (
+      <Grid>
+        <Grid.Column width={10}>
+          <EventLIst events={events} />
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Button
+            positive
+            content='Create Event'
+            onClick={this.handleIsOpentoggle}
+
+          />
+          {isOpen && <EventForm cancelFormOpen={this.handleIsOpentoggle} createEvent={this.handleCreateEvent} />}
+        </Grid.Column>
+      </Grid>
+    );
+  }
 }
 
 export default EventDashboard;
