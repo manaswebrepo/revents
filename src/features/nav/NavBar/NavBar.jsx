@@ -25,8 +25,9 @@ class NavBar extends Component {
                       </Menu.Item>
                     <Menu.Item as={NavLink} exact to='/events' name="Events" />
                     <Menu.Item as={NavLink} exact to='/people' name="People" />
+                    <Menu.Item as={NavLink} exact to='/test' name="Test" />
                     <Menu.Item>
-                        <Button as={Link} exact to='/createEvent' floated="right" positive inverted content="Create Event" />
+                        <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
                     </Menu.Item>
                     {
                        authenticated ?  <SignedInMenu signOut={this.handleSignOut} /> :  <SignedOutMenu signIn={this.handleSignIn} />
