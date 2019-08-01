@@ -6,13 +6,18 @@ import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { configureStore } from './app/store/Configuration';
+import ScrollToTop from './app/common/util/ScrollToTop';
 
 
 const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter><App /></BrowserRouter>
+        <BrowserRouter>
+            <ScrollToTop>
+                <App />
+            </ScrollToTop>
+        </BrowserRouter>
     </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
