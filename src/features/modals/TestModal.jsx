@@ -1,12 +1,11 @@
 import React from "react";
-import { Modal } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { closeModal } from "./modalAction";
+import { Modal } from "semantic-ui-react";
+import { closeModal } from "./modalActions";
 
 const actions = {
   closeModal
 };
-
 const TestModal = ({ closeModal }) => {
   return (
     <Modal closeIcon='close' open={true} onClose={closeModal}>

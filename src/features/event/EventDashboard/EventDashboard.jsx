@@ -1,23 +1,28 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { Grid } from 'semantic-ui-react';
-import EventLIst from '../EventList/EventLIst';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Grid } from "semantic-ui-react";
+import EventLIst from "../EventList/EventLIst";
 
-import { createEvent, updateEvent, deleteEvent } from '../eventActions'
+import { createEvent, updateEvent, deleteEvent } from "../eventActions";
+import LoadingComponent from "../../../app/layout/LoadingComponent";
 
-const mapStateToProps = (state) => ({
-  events: state.events
-})
+const mapStateToProps = state => ({
+  events: state.events,
+  loading: state.async.loading
+});
 
 const actions = {
-  createEvent, updateEvent, deleteEvent
-}
+  createEvent,
+  updateEvent,
+  deleteEvent
+};
 class EventDashboard extends Component {
-  handleDeleteEvent = (id) => {
+  handleDeleteEvent = id => {
     this.props.deleteEvent(id);
-  }
+  };
   render() {
-    const { events } = this.props;
+    const { events, loading } = this.props;
+    if (loading) return <LoadingComponent />;
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -31,4 +36,7 @@ class EventDashboard extends Component {
   }
 }
 
-export default connect(mapStateToProps, actions)(EventDashboard);
+export default connect(
+  mapStateToProps,
+  actions
+)(EventDashboard);

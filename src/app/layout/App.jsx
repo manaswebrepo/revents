@@ -10,7 +10,7 @@ import UserDetailedPage from "../../features/user/UserDetailed/UserDetailedPage"
 import EventForm from "../../features/event/EventForm/EventForm";
 import SettingsDashboard from "../../features/user/Settings/SettingsDashboard";
 import TestComponent from "../../features/testArea/TestComponent";
-import ModalManager from "../../features/modal/ModalManager";
+import ModalManager from "../../features/modals/ModalManager";
 class App extends Component {
   render() {
     return (
