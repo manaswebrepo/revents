@@ -1,22 +1,23 @@
-import { createReducer } from "../../app/common/util/reducerUtil";
 import { LOGIN_USER, SIGN_OUT_USER } from "./authConstants";
+import { createReducer } from "../../app/common/util/reducerUtil";
 
 const initialState = {
-  authenticated: false,
-  currentUser: null
+  currentUser: {}
 };
 
-const loginUser = (state, payload) => {
+export const loginUser = (state, payload) => {
   return {
+    ...state,
     authenticated: true,
     currentUser: payload.creds.email
   };
 };
 
-const signOutUser = () => {
+export const signOutUser = (state, payload) => {
   return {
+    ...state,
     authenticated: false,
-    currentUser: null
+    currentUser: {}
   };
 };
 

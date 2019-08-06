@@ -10,7 +10,7 @@ var firebaseConfig = {
   authDomain: "revents-248603.firebaseapp.com",
   databaseURL: "https://revents-248603.firebaseio.com",
   projectId: "revents-248603",
-  storageBucket: "",
+  storageBucket: "revents-248603.appspot.com",
   messagingSenderId: "499488110759",
   appId: "1:499488110759:web:c2a6c8b6508170cd"
 };
