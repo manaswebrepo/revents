@@ -1,6 +1,6 @@
 import { SubmissionError, reset } from "redux-form";
-import { toastr } from "react-redux-toastr";
 import { closeModal } from "../modals/modalActions";
+import { toastr } from "react-redux-toastr";
 
 export const login = creds => {
   return async (dispatch, getState, { getFirebase }) => {
@@ -19,6 +19,7 @@ export const login = creds => {
   };
 };
 
+// Register user or New user
 export const registerUser = user => async (
   dispatch,
   getState,
@@ -33,7 +34,7 @@ export const registerUser = user => async (
       .createUserWithEmailAndPassword(user.email, user.password);
     console.log(createdUser);
     // update the auth profile
-    await createdUser.updateProfile({
+    await createdUser.user.updateProfile({
       displayName: user.displayName
     });
     // create a new profile in firestore
@@ -41,7 +42,12 @@ export const registerUser = user => async (
       displayName: user.displayName,
       createdAt: firestore.FieldValue.serverTimestamp()
     };
-    await firestore.set(`users/${createdUser.uid}`, { ...newUser });
+
+    console.log(newUser);
+    // create a new entry on firebase[database]
+    await firestore.set(`users/${createdUser.user.uid}`, {
+      ...newUser
+    });
     dispatch(closeModal());
   } catch (error) {
     console.log(error);
@@ -51,6 +57,7 @@ export const registerUser = user => async (
   }
 };
 
+// Login with social oauth [ facebook or google]
 export const socialLogin = selectedProvider => async (
   dispatch,
   getState,
@@ -76,7 +83,6 @@ export const socialLogin = selectedProvider => async (
   }
 };
 
-// Update password
 export const updatePassword = creds => async (
   dispatch,
   getState,
@@ -89,7 +95,6 @@ export const updatePassword = creds => async (
     await dispatch(reset("account"));
     toastr.success("Success", "Your password has been updated");
   } catch (error) {
-    console.log(error);
     throw new SubmissionError({
       _error: error.message
     });

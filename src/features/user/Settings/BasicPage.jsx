@@ -45,7 +45,7 @@ class BasicPage extends Component {
             placeholder='Date of Birth'
             dateFormat='dd LLL yyyy'
             showYearDropdown={true}
-            showMonthDropDown={true}
+            showMonthDropdown={true}
             dropdownMode='select'
             maxDate={addYears(new Date(), -18)}
           />

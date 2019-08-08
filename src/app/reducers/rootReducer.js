@@ -9,7 +9,7 @@ import asyncReducer from "../../features/async/asyncReducer";
 import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from "redux-firestore";
 
-const rootReducers = combineReducers({
+const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   form: formReducer,
@@ -21,4 +21,4 @@ const rootReducers = combineReducers({
   toastr: toastrReducer
 });
 
-export default rootReducers;
+export default rootReducer;

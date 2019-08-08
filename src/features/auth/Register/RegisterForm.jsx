@@ -16,6 +16,7 @@ const validate = combineValidators({
   email: isRequired("email"),
   password: isRequired("password")
 });
+
 const RegisterForm = ({
   handleSubmit,
   registerUser,
@@ -25,7 +26,11 @@ const RegisterForm = ({
 }) => {
   return (
     <div>
-      <Form size='large' onSubmit={handleSubmit(registerUser)}>
+      <Form
+        size='large'
+        onSubmit={handleSubmit(registerUser)}
+        autoComplete='off'
+      >
         <Segment>
           <Field
             name='displayName'
